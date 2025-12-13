@@ -1,0 +1,10 @@
+{
+  "include": ["."],
+  "exclude": ["**/node_modules", "**/__pycache__", ".venv", "typings"],
+  "typeCheckingMode": "basic",
+  "reportArgumentType": "none",
+  "reportUnknownParameterType": "none",
+  "reportUnknownMemberType": "none",
+  "reportUnknownVariableType": "none",
+  "reportMissingTypeArgument": "none",
+}

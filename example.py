@@ -5,12 +5,13 @@
 # pyright: reportUnknownMemberType=false
 # pyright: reportAny=false
 
-import shutil
+import random
 from pathlib import Path
 
 from fastai.vision.all import *
+import matplotlib.pyplot as plt
 
-from r49 import R49File, R49Dataset, R49DataLoaders
+from r49 import R49Dataset, R49DataLoaders
 
 SIZE = 64
 DB_SIZE = int(1.5*SIZE)
@@ -31,5 +32,5 @@ print(f"Batch shape: x={b[0].shape}, y={b[1].shape}")
 print(f"First item: x={b[0][0].shape}, y={b[1][0]}")
 
 # Show some samples from the training set
-dls.train.show_batch(max_n=12)
+dls.train.show_batch(max_n=24)
 plt.show()

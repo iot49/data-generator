@@ -24,11 +24,11 @@ def apply_perspective_transform(
     # Scaling to meet image resolution target
     layout_size = manifest.layout.size
     scale = dpt / manifest.gauge_mm
-    if scale > 1.25: 
+    if scale > 3: 
         raise ValueError(f"upscaling image by {scale}x - increase camera resolution!")
 
-    w = scale * layout_size.width
-    h = scale * layout_size.height
+    w = scale * (layout_size.width or 0) 
+    h = scale * (layout_size.height or 0)
 
     # Destination points (corners of the output rectangle)
     dst = np.array(
@@ -41,7 +41,7 @@ def apply_perspective_transform(
 
     # Calculate bounds for the entire transformed image to eliminate black borders
     # Transform all corners of the original image to see the full extent
-    img_height, img_width = image.shape[:2]  # OpenCV uses (height, width)
+    img_height, img_width = image.shape[:2]  # OpenCV uses (height, width)  # pyright: ignore[reportAny]
     image_corners = np.array(
         [
             [0, 0],
@@ -79,7 +79,7 @@ def apply_perspective_transform(
     transformed_image = cv2.warpPerspective(
         image,
         final_transform,
-        (int(np.ceil(xr - xl)), int(np.ceil(yb - yt))),
+        (int(np.ceil(xr - xl)), int(np.ceil(yb - yt))),  # pyright: ignore[reportAny]
         flags=cv2.INTER_CUBIC,
     )
 
