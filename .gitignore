@@ -1,7 +1,9 @@
-data-generator.code-workspace
-models
+classifier.code-workspace
 typings
 .vscode
+
+*.pth
+*.onnx
 
 # Python
 __pycache__/
